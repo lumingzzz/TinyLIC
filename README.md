@@ -47,7 +47,7 @@ If you find this work useful for your research, please cite:
 ## Acknowledgement
 The framework is based on [CompressAI](https://github.com/InterDigitalInc/CompressAI/), we add our modifications in compressai.models.tinylic and compressai.layers for usage.
 
-The model is partially built upon the [Swin Transformer]{https://github.com/microsoft/Swin-Transformer} and the open sourced unofficial implementation of [checherboard shaped context model]{https://github.com/leelitian/Checkerboard-Context-Model-Pytorch}. We thank the authors for sharing their code.
+The model is partially built upon the [Swin Transformer](https://github.com/microsoft/Swin-Transformer) and the open sourced unofficial implementation of [checherboard shaped context model](https://github.com/leelitian/Checkerboard-Context-Model-Pytorch). We thank the authors for sharing their code.
 
 ## Contact
 If you have any question, please contact me via luming@smail.nju.edu.cn.
