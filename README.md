@@ -31,24 +31,18 @@ A pre-trained model of Quality 3 (lambda = 0.0067) can be downloaded in [NJU Box
 
 An example to evaluate model:
 ```bash
-python -m compressai.utils.eval_model checkpoint path/to/eval/data/ -a tic -p path/to/pretrained/model --cuda
+python -m compressai.utils.eval_model checkpoint path/to/eval/data/ -a tinylic -p path/to/pretrained/model --cuda
 ```
-
-## Notes
-Some implementations are slightly different from the paper:
-1. We remove the activation functions after the convolutions (e.g. the GDN and LReLU), which have no influence to the performance. 
-2. The implementation of the Causal Attention Module (CAM) is slightly different from the paper by directly masking the
-input of context model, it shows more feasible than the original one. 
 
 ## Citation
 If you find this work useful for your research, please cite:
 
 ```
-@article{lu2021transformer,
-	title={Transformer-based Image Compression},
-	author={Lu, Ming and Guo, Peiyao and Shi, Huiqing and Cao, Chuntong and Ma, Zhan},
-	journal={arXiv preprint arXiv:2111.06707},
-	year={2021}
+@article{lu2022high,
+  title={High-Efficiency Lossy Image Coding Through Adaptive Neighborhood Information Aggregation},
+  author={Lu, Ming and Ma, Zhan},
+  journal={arXiv preprint arXiv:2204.11448},
+  year={2022}
 }
 ```
 ## Contact
@@ -57,5 +51,4 @@ If you have any question, please contact me via luming@smail.nju.edu.cn.
 ## Related links
  * Kodak image dataset: http://r0k.us/graphics/kodak/
  * BPG image format by _Fabrice Bellard_: https://bellard.org/bpg
- * HEVC HM reference software: https://hevc.hhi.fraunhofer.de
  * VVC VTM reference software: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM
