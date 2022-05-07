@@ -24,7 +24,7 @@ python examples/train.py -m tinylic -d /path/to/my/image/dataset/ --epochs 400 -
 
 
 ### Evaluation
-Pre-trained models for Quality 1,3,5,7 (lambda = 0.0018,0.0067,0.025,0.0932) can be downloaded in [NJU Box](https://box.nju.edu.cn/d/6bd0aafa2faf47cab7c2/). Since the codes are reorgnized and retrained using the newest version (1.2.0) of [CompressAI](https://github.com/InterDigitalInc/CompressAI/), the performance may be slightly different from that in the paper.
+Pre-trained models for Quality 1,3 (lambda = 0.0018,0.0067) can be downloaded in [NJU Box](https://box.nju.edu.cn/d/6bd0aafa2faf47cab7c2/). Since the codes are reorgnized and retrained using the newest version (1.2.0) of [CompressAI](https://github.com/InterDigitalInc/CompressAI/), the performance may be slightly different from that in the paper.
 
 An example to evaluate model:
 ```bash
