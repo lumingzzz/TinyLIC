@@ -34,7 +34,7 @@ An example to evaluate model:
 ```bash
 python -m compressai.utils.eval_model checkpoint path/to/eval/data/ -a tinylic -p path/to/pretrained/model --cuda
 ```
-The simulation results in our paper are all with "--entropy-estimation" enabled for quick evaluation. There may be a slight deviation against the actual ''compress-decompress'' while the comparisons are consistent.
+The simulation results in our paper are all with "--entropy-estimation" enabled for quick evaluation. There may be a slight deviation against the actual ''compress-decompress'' while the contrast relationship are consistent.
 
 ## Citation
 If you find this work useful for your research, please cite:
