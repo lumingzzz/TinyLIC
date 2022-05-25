@@ -54,8 +54,3 @@ The TinyLIC model is partially built upon the [Swin Transformer](https://github.
 
 ## Contact
 If you have any question, please contact me via luming@smail.nju.edu.cn.
-
-## Related links
- * Kodak image dataset: http://r0k.us/graphics/kodak/
- * BPG image format by _Fabrice Bellard_: https://bellard.org/bpg
- * VVC VTM reference software: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM
