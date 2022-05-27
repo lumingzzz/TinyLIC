@@ -34,7 +34,6 @@ from .image import (
     cheng2020_attn,
     mbt2018,
     mbt2018_mean,
-    tic,
     tinylic
 )
 from .pretrained import load_pretrained as load_state_dict
@@ -47,7 +46,6 @@ image_models = {
     "mbt2018": mbt2018,
     "cheng2020-anchor": cheng2020_anchor,
     "cheng2020-attn": cheng2020_attn,
-    "tic": tic,
     "tinylic": tinylic,
 }
 
