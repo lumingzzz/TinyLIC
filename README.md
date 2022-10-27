@@ -47,7 +47,7 @@ If you find this work useful for your research, please cite:
 ```
 
 ## Acknowledgement
-This open source framework is based on [CompressAI](https://github.com/InterDigitalInc/CompressAI/), we add our modifications mainly in compressai.models.tinylic and compressai.layers for usage.
+This framework is based on [CompressAI](https://github.com/InterDigitalInc/CompressAI/), we add our modifications mainly in compressai.models.tinylic and compressai.layers for usage. You can refer to the paper to understand the part of the codes.
 
 The TinyLIC model is partially built upon the [Neighborhood Attention Transformer](https://github.com/SHI-Labs/Neighborhood-Attention-Transformer) and the open sourced unofficial implementation of [Checkerboard Shaped Context Model](https://github.com/leelitian/Checkerboard-Context-Model-Pytorch). We thank the authors for sharing their code.
 
