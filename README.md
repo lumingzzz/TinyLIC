@@ -27,9 +27,7 @@ The training checkpoints will be generated in the "chekpoints" folder at the cur
 
 
 ### Evaluation
-Pre-trained models can be downloaded in [NJU Box](https://box.nju.edu.cn/d/6bd0aafa2faf47cab7c2/).
-
-The mse optimized results can be found in [/results](https://github.com/lumingzzz/TinyLIC/tree/main/results) for reference.
+Pre-trained models can be downloaded in [NJU Box](https://box.nju.edu.cn/d/6bd0aafa2faf47cab7c2/). The mse optimized results can be found in [/results](https://github.com/lumingzzz/TinyLIC/tree/main/results) for reference.
 
 An example to evaluate model:
 ```bash
