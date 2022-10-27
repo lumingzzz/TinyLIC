@@ -136,6 +136,8 @@ setup(
         "torch>=1.7.1",
         "torchvision",
         "pytorch-msssim",
+        "timm",
+        "ninja",
     ],
     extras_require=get_extra_requirements(),
     license="BSD 3-Clause Clear License",

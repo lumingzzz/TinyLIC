@@ -239,6 +239,29 @@ def Demultiplexer(x):
     x_prime = Space2Depth(r=2)(x)
     
     _, C, _, _ = x_prime.shape
+    anchor_index = tuple(range(C // 4, C * 3 // 4))
+    non_anchor_index = tuple(range(0, C // 4)) + tuple(range(C * 3 // 4, C))
+    
+    anchor = x_prime[:, anchor_index, :, :]
+    non_anchor = x_prime[:, non_anchor_index, :, :]
+
+    return anchor, non_anchor
+
+
+def Multiplexer(anchor, non_anchor):
+    """
+    The inverse opperation of Demultiplexer.
+    This operation can also implemented by slicing.
+    """
+    _, C, _, _ = non_anchor.shape
+    x_prime = torch.cat((non_anchor[:, : C//2, :, :], anchor, non_anchor[:, C//2:, :, :]), dim=1)
+    return Depth2Space(r=2)(x_prime)
+
+
+def Demultiplexerv2(x):
+    x_prime = Space2Depth(r=2)(x)
+    
+    _, C, _, _ = x_prime.shape
     y1_index = tuple(range(0, C // 4))
     y2_index = tuple(range(C * 3 // 4, C))
     y3_index = tuple(range(C // 4, C // 2))
@@ -252,10 +275,6 @@ def Demultiplexer(x):
     return y1, y2, y3, y4
 
 
-def Multiplexer(y1, y2, y3, y4):
-    """
-    The inverse opperation of Demultiplexer.
-    This operation can also implemented by slicing.
-    """
+def Multiplexerv2(y1, y2, y3, y4):
     x_prime = torch.cat((y1, y3, y4, y2), dim=1)
     return Depth2Space(r=2)(x_prime)

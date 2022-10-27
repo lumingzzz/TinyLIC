@@ -98,7 +98,7 @@ class CustomDataParallel(nn.DataParallel):
 
 
 def init(args):
-    base_dir = f'./pretrained/{args.model}/{args.quality_level}/'
+    base_dir = f'./checkpoints/{args.model}/{args.quality_level}/'
     os.makedirs(base_dir, exist_ok=True)
 
     return base_dir
@@ -380,8 +380,7 @@ def main(argv):
         net = CustomDataParallel(net)
 
     optimizer, aux_optimizer = configure_optimizers(net, args)
-    # lr_scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, "min")
-    lr_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[300,500], gamma=0.1)
+    lr_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[300,], gamma=0.1)
     criterion = RateDistortionLoss(lmbda=args.lmbda)
 
     last_epoch = 0

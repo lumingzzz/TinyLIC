@@ -113,3 +113,5 @@ webencodings==0.5.1
 widgetsnbextension==3.5.1
 wrapt==1.12.1
 tqdm==4.62.3
+timm==0.6.11
+ninja==1.10.2.4

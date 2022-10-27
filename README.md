@@ -4,15 +4,15 @@ Pytorch Implementation of our paper "High-Efficiency Lossy Image Coding Through 
 More details can be found at the [homepage](https://njuvision.github.io/TinyLIC/). 
 
 ## News
+- The latest version of our TinyLIC is released with more efficient network architecture in both transform and entropy coding modules. More details can be found in the paper.
 - This project is still being updated. 
 
 ## Installation
-To get started locally and install the development version of our work, run the following commands (The [docker environment](https://registry.hub.docker.com/layers/pytorch/pytorch/1.8.1-cuda11.1-cudnn8-devel/images/sha256-024af183411f136373a83f9a0e5d1a02fb11acb1b52fdcf4d73601912d0f09b1?context=explore) is recommended):
+To get started locally and install the development version of our work, run the following commands (The [docker environment](https://hub.docker.com/layers/pytorch/pytorch/1.11.0-cuda11.3-cudnn8-devel/images/sha256-9bfcfa72b6b244c1fbfa24864eec97fb29cfafc065999e9a9ba913fa1e690a02?context=explore) is recommended):
 ```bash
 git clone https://github.com/lumingzzz/TinyLIC.git
 cd TinyLIC
 pip install -U pip && pip install -e .
-pip install timm
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ The training checkpoints will be generated in the "pretrained" folder at current
 
 
 ### Evaluation
-Pre-trained models for Quality 3 (lambda = 0.0067) can be downloaded in [NJU Box](https://box.nju.edu.cn/d/20d8c218821d48d6af23/). Since the codes are reorgnized and retrained using the newest version (1.2.0) of [CompressAI](https://github.com/InterDigitalInc/CompressAI/), the performance may be slightly different from that in the paper.
+Pre-trained models can be downloaded in [NJU Box](https://box.nju.edu.cn/d/6bd0aafa2faf47cab7c2/).
 
 The mse optimized results can be found in [/results](https://github.com/lumingzzz/TinyLIC/tree/main/results) for reference.
 
@@ -36,7 +36,6 @@ An example to evaluate model:
 ```bash
 python -m compressai.utils.eval_model checkpoint path/to/eval/data/ -a tinylic -p path/to/pretrained/model --cuda
 ```
-The simulation results in our paper are all with "--entropy-estimation" enabled for quick evaluation. There may be a slight deviation against the actual ''compress-decompress'' while the contrast relationships are consistent.
 
 ## Citation
 If you find this work useful for your research, please cite:
