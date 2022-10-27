@@ -299,6 +299,7 @@ class TinyLIC(nn.Module):
         x = self.g_a4(x)
         x = self.g_a5(x)
         x = self.g_a6(x)
+        print(x.shape)
         x = self.g_a7(x)
         return x
 

@@ -34,7 +34,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 from torch.autograd import Function
-import torch.utils.checkpoint as checkpoint
 
 from timm.models.layers import DropPath
 
