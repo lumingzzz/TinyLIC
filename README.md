@@ -24,7 +24,7 @@ Run the script for a simple training pipeline:
 ```bash
 python examples/train.py -m tinylic -d /path/to/my/image/dataset/ --epochs 400 -lr 1e-4 --batch-size 8 --cuda --save
 ```
-The training checkpoints will be generated in the "pretrained" folder at current directory. You can change the default folder by modifying the function "init" in "./expample/train.py".
+The training checkpoints will be generated in the "chekpoints" folder at the current directory. You can change the default folder by modifying the function "init()" in "./expample/train.py".
 
 
 ### Evaluation
