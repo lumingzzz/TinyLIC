@@ -4,8 +4,7 @@ Pytorch Implementation of our paper "High-Efficiency Lossy Image Coding Through 
 More details can be found at the [homepage](https://njuvision.github.io/TinyLIC/). 
 
 ## News
-- The latest version of our TinyLIC is released with more efficient network architecture in both transform and entropy coding modules. More details can be found in the paper.
-- This project is still being updated. 
+- [22.10.27] The latest version of our TinyLIC is released with more efficient network architecture in both transform and entropy coding modules. More details can be found in the paper.
 
 ## Installation
 To get started locally and install the development version of our work, run the following commands (The [docker environment](https://hub.docker.com/layers/pytorch/pytorch/1.11.0-cuda11.3-cudnn8-devel/images/sha256-9bfcfa72b6b244c1fbfa24864eec97fb29cfafc065999e9a9ba913fa1e690a02?context=explore) is recommended):
