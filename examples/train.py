@@ -87,16 +87,6 @@ class AverageMeter:
         self.avg = self.sum / self.count
 
 
-class CustomDataParallel(nn.DataParallel):
-    """Custom DataParallel to access the module methods."""
-
-    def __getattr__(self, key):
-        try:
-            return super().__getattr__(key)
-        except AttributeError:
-            return getattr(self.module, key)
-
-
 def init(args):
     base_dir = f'./checkpoints/{args.model}/{args.quality_level}/'
     os.makedirs(base_dir, exist_ok=True)
@@ -375,9 +365,6 @@ def main(argv):
 
     net = image_models[args.model](quality=int(args.quality_level))
     net = net.to(device)
-
-    if args.cuda and torch.cuda.device_count() > 1:
-        net = CustomDataParallel(net)
 
     optimizer, aux_optimizer = configure_optimizers(net, args)
     lr_scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[300,], gamma=0.1)
