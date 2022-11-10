@@ -381,7 +381,8 @@ class TinyLIC(nn.Module):
                 support_slices = torch.cat([params] + y_hat_slices, dim=1)
                 cc_params = self.cc_transforms[slice_index](support_slices)
 
-                sc_params = torch.zeros_like(cc_params)
+                sc_params_1 = torch.zeros_like(cc_params)
+                sc_params = sc_params_1
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -391,9 +392,10 @@ class TinyLIC(nn.Module):
                 y_0 = y_hat_slice.clone()
                 y_0[:, :, 0::2, 1::2] = 0
                 y_0[:, :, 1::2, :] = 0
-                sc_params = self.sc_transform_1(y_0)
-                sc_params[:, :, 0::2, :] = 0
-                sc_params[:, :, 1::2, 0::2] = 0
+                sc_params_2 = self.sc_transform_1(y_0)
+                sc_params_2[:, :, 0::2, :] = 0
+                sc_params_2[:, :, 1::2, 0::2] = 0
+                sc_params = sc_params_1 + sc_params_2
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -403,9 +405,10 @@ class TinyLIC(nn.Module):
                 y_1 = y_hat_slice.clone()
                 y_1[:, :, 0::2, 1::2] = 0
                 y_1[:, :, 1::2, 0::2] = 0
-                sc_params = self.sc_transform_2(y_1)
-                sc_params[:, :, 0::2, 0::2] = 0
-                sc_params[:, :, 1::2, :] = 0
+                sc_params_3 = self.sc_transform_2(y_1)
+                sc_params_3[:, :, 0::2, 0::2] = 0
+                sc_params_3[:, :, 1::2, :] = 0
+                sc_params = sc_params_1 + sc_params_2 + sc_params_3
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -414,9 +417,10 @@ class TinyLIC(nn.Module):
 
                 y_2 = y_hat_slice.clone()
                 y_2[:, :, 1::2, 0::2] = 0
-                sc_params = self.sc_transform_3(y_2)
-                sc_params[:, :, 0::2, :] = 0
-                sc_params[:, :, 1::2, 1::2] = 0
+                sc_params_4 = self.sc_transform_3(y_2)
+                sc_params_4[:, :, 0::2, :] = 0
+                sc_params_4[:, :, 1::2, 1::2] = 0
+                sc_params = sc_params_1 + sc_params_2 + sc_params_3 + sc_params_4
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -600,9 +604,10 @@ class TinyLIC(nn.Module):
 
                 y_slice_0, y_slice_1, y_slice_2, y_slice_3 = Demultiplexerv2(y_slice)
                 
-                zero_sc_params = torch.zeros(y_slice.shape[0], y_slice.shape[1]*2, y_slice.shape[2], y_slice.shape[3]).to(z_hat.device)
+                sc_params_1 = torch.zeros(y_slice.shape[0], y_slice.shape[1]*2, y_slice.shape[2], y_slice.shape[3]).to(z_hat.device)
+                sc_params = sc_params_1
                 gaussian_params = self.entropy_parameters_1(
-                    torch.cat((params, zero_sc_params, cc_params), dim=1)
+                    torch.cat((params, sc_params, cc_params), dim=1)
                 )
                 scales_hat, means_hat = gaussian_params.chunk(2, 1)
 
@@ -617,10 +622,10 @@ class TinyLIC(nn.Module):
 
                 y_hat_slice = Multiplexerv2(y_hat_slice_0, torch.zeros_like(y_hat_slice_0), 
                                             torch.zeros_like(y_hat_slice_0), torch.zeros_like(y_hat_slice_0))
-                sc_params = self.sc_transform_1(y_hat_slice)
-                sc_params[:, :, 0::2, :] = 0
-                sc_params[:, :, 1::2, 0::2] = 0
-
+                sc_params_2 = self.sc_transform_1(y_hat_slice)
+                sc_params_2[:, :, 0::2, :] = 0
+                sc_params_2[:, :, 1::2, 0::2] = 0
+                sc_params = sc_params_1 + sc_params_2
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -637,9 +642,10 @@ class TinyLIC(nn.Module):
 
                 y_hat_slice = Multiplexerv2(y_hat_slice_0, y_hat_slice_1, 
                                             torch.zeros_like(y_hat_slice_0), torch.zeros_like(y_hat_slice_0))
-                sc_params = self.sc_transform_2(y_hat_slice)
-                sc_params[:, :, 0::2, 0::2] = 0
-                sc_params[:, :, 1::2, :] = 0
+                sc_params_3 = self.sc_transform_2(y_hat_slice)
+                sc_params_3[:, :, 0::2, 0::2] = 0
+                sc_params_3[:, :, 1::2, :] = 0
+                sc_params = sc_params_1 + sc_params_2 + sc_params_3
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -656,9 +662,10 @@ class TinyLIC(nn.Module):
 
                 y_hat_slice = Multiplexerv2(y_hat_slice_0, y_hat_slice_1, 
                                             y_hat_slice_2, torch.zeros_like(y_hat_slice_0))
-                sc_params = self.sc_transform_3(y_hat_slice)
-                sc_params[:, :, 0::2, :] = 0
-                sc_params[:, :, 1::2, 1::2] = 0
+                sc_params_4 = self.sc_transform_3(y_hat_slice)
+                sc_params_4[:, :, 0::2, :] = 0
+                sc_params_4[:, :, 1::2, 1::2] = 0
+                sc_params = sc_params_1 + sc_params_2 + sc_params_3 + sc_params_4
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -818,9 +825,10 @@ class TinyLIC(nn.Module):
             if slice_index == 0:
                 cc_params = self.cc_transforms[slice_index](params)
 
-                zero_sc_params = torch.zeros(z_hat.shape[0], slice_list[slice_index]*2, z_hat.shape[2]*4, z_hat.shape[3]*4).to(z_hat.device)
+                sc_params_1 = torch.zeros(z_hat.shape[0], slice_list[slice_index]*2, z_hat.shape[2]*4, z_hat.shape[3]*4).to(z_hat.device)
+                sc_params = sc_params_1
                 gaussian_params = self.entropy_parameters_1(
-                    torch.cat((params, zero_sc_params, cc_params), dim=1)
+                    torch.cat((params, sc_params, cc_params), dim=1)
                 )
                 scales_hat, means_hat = gaussian_params.chunk(2, 1)
 
@@ -833,9 +841,10 @@ class TinyLIC(nn.Module):
 
                 y_hat_slice = Multiplexerv2(y_hat_slice_0, torch.zeros_like(y_hat_slice_0), 
                                             torch.zeros_like(y_hat_slice_0), torch.zeros_like(y_hat_slice_0))
-                sc_params = self.sc_transform_1(y_hat_slice)
-                sc_params[:, :, 0::2, :] = 0
-                sc_params[:, :, 1::2, 0::2] = 0
+                sc_params_2 = self.sc_transform_1(y_hat_slice)
+                sc_params_2[:, :, 0::2, :] = 0
+                sc_params_2[:, :, 1::2, 0::2] = 0
+                sc_params = sc_params_1 + sc_params_2
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -850,9 +859,10 @@ class TinyLIC(nn.Module):
 
                 y_hat_slice = Multiplexerv2(y_hat_slice_0, y_hat_slice_1, 
                                             torch.zeros_like(y_hat_slice_0), torch.zeros_like(y_hat_slice_0))
-                sc_params = self.sc_transform_2(y_hat_slice)
-                sc_params[:, :, 0::2, 0::2] = 0
-                sc_params[:, :, 1::2, :] = 0
+                sc_params_3 = self.sc_transform_2(y_hat_slice)
+                sc_params_3[:, :, 0::2, 0::2] = 0
+                sc_params_3[:, :, 1::2, :] = 0
+                sc_params = sc_params_1 + sc_params_2 + sc_params_3
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
@@ -867,9 +877,10 @@ class TinyLIC(nn.Module):
 
                 y_hat_slice = Multiplexerv2(y_hat_slice_0, y_hat_slice_1, 
                                             y_hat_slice_2, torch.zeros_like(y_hat_slice_0))
-                sc_params = self.sc_transform_3(y_hat_slice)
-                sc_params[:, :, 0::2, :] = 0
-                sc_params[:, :, 1::2, 1::2] = 0
+                sc_params_4 = self.sc_transform_3(y_hat_slice)
+                sc_params_4[:, :, 0::2, :] = 0
+                sc_params_4[:, :, 1::2, 1::2] = 0
+                sc_params = sc_params_1 + sc_params_2 + sc_params_3 + sc_params_4
                 gaussian_params = self.entropy_parameters_1(
                     torch.cat((params, sc_params, cc_params), dim=1)
                 )
