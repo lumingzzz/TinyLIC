@@ -2,6 +2,7 @@
 Pytorch Implementation of our paper "High-Efficiency Lossy Image Coding Through Adaptive Neighborhood Information Aggregation"[[arXiv]](https://arxiv.org/abs/2204.11448). More details can be found at the [homepage](https://njuvision.github.io/TinyLIC/). 
 
 ## News
+- __[22.12.16]__ The MS-SSIM optimized pretrained models and evaluation results are uploaded for reference.
 - __[22.11.09]__ We fix a bug for the implement of the multistage context model and the performance is improved slightly, the models are retrained and you need to download the new ones.
 - __[22.10.27]__ The latest version of our TinyLIC is released with more efficient network architecture in both transform and entropy coding modules. More details can be found in the paper.
 
@@ -26,7 +27,7 @@ The training checkpoints will be generated in the "chekpoints" folder at the cur
 
 
 ### Evaluation
-Pre-trained models can be downloaded in [NJU Box](https://box.nju.edu.cn/d/04ca4e35140f4cec8b4e/). The mse optimized R-D results of three popular datasets can be found in [/results](https://github.com/lumingzzz/TinyLIC/tree/main/results) for reference.
+Pre-trained models can be downloaded in [NJU Box](https://box.nju.edu.cn/d/04ca4e35140f4cec8b4e/). The R-D results of three popular datasets can be found in [/results](https://github.com/lumingzzz/TinyLIC/tree/main/results) for reference.
 
 An example to evaluate model:
 ```bash
