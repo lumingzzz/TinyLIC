@@ -161,7 +161,7 @@ def load_pretrained(model: str, metric: str, quality: int) -> nn.Module:
 
 
 def load_checkpoint(arch: str, checkpoint_path: str) -> nn.Module:
-    state_dict = load_state_dict(torch.load(checkpoint_path)['state_dict'])
+    state_dict = load_state_dict(torch.load(checkpoint_path))
     return architectures[arch].from_state_dict(state_dict).eval()
 
 
