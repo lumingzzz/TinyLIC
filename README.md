@@ -52,4 +52,4 @@ This framework is based on [CompressAI](https://github.com/InterDigitalInc/Compr
 The TinyLIC model is partially built upon the [Neighborhood Attention Transformer](https://github.com/SHI-Labs/Neighborhood-Attention-Transformer) and the open-sourced unofficial implementation of [Checkerboard Context Model](https://github.com/leelitian/Checkerboard-Context-Model-Pytorch). We thank the authors for sharing their codes.
 
 ## Contact
-If you have any question, please contact me via luming@smail.nju.edu.cn.
+If you have any question, please contact me via minglu@nju.edu.cn.
